@@ -2,12 +2,12 @@
   <h2>Filtro de Coleção</h2>
   <div>
     <label for="name">Nome:</label>
-    <input type="text" id="name" [(ngModel)]="name">
+    <input type="text" id="name" [formControl]="queryField">
   </div>
   <div>
     <label for="block">Bloco:</label>
-    <select id="block" [(ngModel)]="block">
-      <option value="">Selecione um bloco</option>
+    <select id="block" [formControl]="blockField">
+      <option value="" selected disabled>Selecione um bloco</option>
       <option value="Amonkhet">Amonkhet</option>
       <option value="Ixalan">Ixalan</option>
       <option value="Zendikar">Zendikar</option>
@@ -15,8 +15,19 @@
       <option value="Onslaught">Onslaught</option>
     </select>
   </div>
-  <button (click)="searchCollections()">Buscar</button>
+  <button (click)="onSearch()">Buscar</button>
+  <div *ngIf="blockField.invalid && blockField.touched" class="error-message">
+    Por favor, selecione um bloco.
+  </div>
 </div>
 
-<app-search-results [searchResults]="searchResults"></app-search-results>
-
+<div *ngIf="results$ | async as results">
+  <h2>Resultados da Pesquisa</h2>
+  <ul>
+    <li *ngFor="let result of results">
+      <p><strong>Nome:</strong> {{ result.name }}</p>
+      <p><strong>Código:</strong> {{ result.code }}</p>
+      <p><strong>Data de Lançamento:</strong> {{ result.releaseDate }}</p>
+    </li>
+  </ul>
+</div>

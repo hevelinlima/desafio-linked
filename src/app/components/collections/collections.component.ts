@@ -1,21 +1,38 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
+import { Observable, map, tap } from 'rxjs';
 
 @Component({
   selector: 'app-collections',
   templateUrl: './collections.component.html',
   styleUrl: './collections.component.css'
 })
-export class CollectionsComponent {
-  name: string = '';
-  block: string = '';
-  searchResults: any[] = [];
-  
-  @Output() search: EventEmitter<any> = new EventEmitter();
+export class CollectionsComponent implements OnInit {
 
-  constructor() {}
+  queryField = new FormControl();
+  blockField = new FormControl('', Validators.required);
 
-  searchCollections(): void {
-    console.log('Dados de busca:', { name: this.name, block: this.block });
-    this.search.emit({ name: this.name, block: this.block });
+  readonly SEARCH_URL = 'https://api.magicthegathering.io/v1/sets';
+
+  results$!: Observable<any>;
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    
+  }
+
+  onSearch(){
+    if(this.blockField.valid){
+      console.log("Name:", this.queryField.value);
+      console.log("Block:", this.blockField.value);
+
+      this.results$ = this.http.get(this.SEARCH_URL + "?name=khans")
+      .pipe(
+        map((res: any) => res.sets),
+        tap(results => console.log('Resultados:', results))
+      )
+    }
   }
 }
