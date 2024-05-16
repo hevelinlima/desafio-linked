@@ -1,11 +1,23 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { CollectionService } from './services/collection.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'desafio-linked';
+
+export class AppComponent implements OnInit {
+  constructor(private collectionService: CollectionService) {}
+
+  ngOnInit(): void {
+    this.collectionService.getAllSets().subscribe(
+      (response) => {
+        // console.log('Conjuntos de cartas:', response);
+      },
+      (error) => {
+        console.error('Erro ao buscar conjuntos de cartas:', error);
+      }
+    );
+  }
 }

@@ -1,0 +1,22 @@
+<div>
+  <h2>Filtro de Coleção</h2>
+  <div>
+    <label for="name">Nome:</label>
+    <input type="text" id="name" [(ngModel)]="name">
+  </div>
+  <div>
+    <label for="block">Bloco:</label>
+    <select id="block" [(ngModel)]="block">
+      <option value="">Selecione um bloco</option>
+      <option value="Amonkhet">Amonkhet</option>
+      <option value="Ixalan">Ixalan</option>
+      <option value="Zendikar">Zendikar</option>
+      <option value="Ravnica">Ravnica</option>
+      <option value="Onslaught">Onslaught</option>
+    </select>
+  </div>
+  <button (click)="searchCollections()">Buscar</button>
+</div>
+
+<app-search-results [searchResults]="searchResults"></app-search-results>
+

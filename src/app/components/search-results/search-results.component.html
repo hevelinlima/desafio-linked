@@ -1,0 +1,14 @@
+<div *ngIf="searchResults.length > 0">
+  <h2>Resultados da Pesquisa</h2>
+  <ul>
+    <li *ngFor="let result of searchResults">
+      <p><strong>Nome:</strong> {{ result.name }}</p>
+      <p><strong>Bloco:</strong> {{ result.block }}</p>
+      <p><strong>Data de Lançamento:</strong> {{ result.releaseDate }}</p>
+    </li>
+  </ul>
+</div>
+<div *ngIf="searchResults.length === 0">
+  <p>Nenhum resultado encontrado.</p>
+</div>
+
