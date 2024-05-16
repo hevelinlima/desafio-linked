@@ -24,15 +24,23 @@ export class CollectionsComponent implements OnInit {
   }
 
   onSearch(){
-    if(this.blockField.valid){
-      console.log("Name:", this.queryField.value);
-      console.log("Block:", this.blockField.value);
+    let valueField = this.queryField.value;
 
-      this.results$ = this.http.get(this.SEARCH_URL + "?name=khans")
+    let valueBlock = this.blockField.value;
+
+    if(this.blockField.valid){
+      
+      if(valueField && (valueField = valueField.trim()) !== ''){
+        this.results$ = this.http.get(this.SEARCH_URL + "?name=" + valueField + "|" + valueBlock)
       .pipe(
-        map((res: any) => res.sets),
-        tap(results => console.log('Resultados:', results))
+        map((res: any) => res.sets)
       )
+      }else{
+        this.results$ = this.http.get(this.SEARCH_URL + "?name=" + valueBlock)
+      .pipe(
+        map((res: any) => res.sets)
+      )
+      }
     }
   }
 }

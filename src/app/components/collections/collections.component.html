@@ -1,11 +1,9 @@
 <div>
   <h2>Filtro de Coleção</h2>
   <div>
-    <label for="name">Nome:</label>
-    <input type="text" id="name" [formControl]="queryField">
+    <input type="text" id="name" [formControl]="queryField" placeholder="Nome">
   </div>
   <div>
-    <label for="block">Bloco:</label>
     <select id="block" [formControl]="blockField">
       <option value="" selected disabled>Selecione um bloco</option>
       <option value="Amonkhet">Amonkhet</option>

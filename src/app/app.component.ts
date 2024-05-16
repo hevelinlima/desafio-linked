@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CollectionService } from './services/collection.service';
 
 @Component({
   selector: 'app-root',
@@ -8,16 +7,8 @@ import { CollectionService } from './services/collection.service';
 })
 
 export class AppComponent implements OnInit {
-  constructor(private collectionService: CollectionService) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.collectionService.getAllSets().subscribe(
-      (response) => {
-        // console.log('Conjuntos de cartas:', response);
-      },
-      (error) => {
-        console.error('Erro ao buscar conjuntos de cartas:', error);
-      }
-    );
   }
 }
