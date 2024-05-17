@@ -1,1 +1,19 @@
-<p>booster-display works!</p>
+<div class="container mt-4" *ngIf="boosterCards.length > 0">
+  <h2>Booster Cards</h2>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let card of boosterCards">
+      <div class="card mb-4 custom-card-background">
+        <div class="card-body card-2">
+          <h5>{{ card.name }}</h5>
+          <h6>{{ card.manaCost }}</h6>
+          <p>{{ card.colorIdentity }}</p>
+          <img *ngIf="card.imageUrl" [src]="fixImageUrl(card.imageUrl)" class="img-fluid" alt="{{ card.name }}">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-4" *ngIf="boosterCards.length === 0">
+  <p>Nenhuma carta encontrada.</p>
+</div>

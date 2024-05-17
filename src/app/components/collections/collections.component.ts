@@ -16,6 +16,7 @@ export class CollectionsComponent implements OnInit {
   readonly SEARCH_URL = 'https://api.magicthegathering.io/v1/sets';
   results$!: Observable<any>;
   selectedSetId: string | null = null;
+  boosterCards: any[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -51,22 +52,13 @@ export class CollectionsComponent implements OnInit {
 
     this.http.get<any>(BOOSTER_URL)
     .pipe(
-      map((res: any) => res.cards.filter((card: any)=> card.types.includes('creature')))
-    ).subscribe(
+      map((res: any) => res.cards)).subscribe(
       cards => {
-        if (cards.length >= 30){
-          this.displayBoosterCards(cards);
-        } else{
-          this.getBoosterCards(setId);
-        }
+        this.boosterCards = cards;
       },
       error => {
-        console.log('Erro ao buscar boosters:', error)
+        console.error('Erro ao buscar boosters:', error);
       }
     );
-  }
-
-  displayBoosterCards(cards: any[]):void{
-    console.log('Booster cards:', cards);
   }
 }
