@@ -1,31 +1,44 @@
-<div>
-  <h2>Filtro de Coleção</h2>
-  <div>
-    <input type="text" id="name" [formControl]="queryField" placeholder="Nome">
+<nav class="navbar bg-dark border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">Encontre sua coleção</a>
+    <div class="d-flex">
+      <input type="text" id="name" [formControl]="queryField" placeholder="Nome" class="form-control me-2">
+  
+      <select id="block" [formControl]="blockField" class="form-control me-2">
+        <option value="" selected disabled>Selecione um bloco</option>
+        <option value="Amonkhet">Amonkhet</option>
+        <option value="Ixalan">Ixalan</option>
+        <option value="Zendikar">Zendikar</option>
+        <option value="Ravnica">Ravnica</option>
+        <option value="Onslaught">Onslaught</option>
+      </select>
+  
+      <button (click)="onSearch()" class="btn btn-outline-success">Buscar</button>
+    </div>
+    <div class="container">
+      <div *ngIf="blockField.invalid && blockField.touched" class="alert alert-info" role="alert">
+        Por favor, selecione um bloco.
+      </div>
+    </div>
   </div>
-  <div>
-    <select id="block" [formControl]="blockField">
-      <option value="" selected disabled>Selecione um bloco</option>
-      <option value="Amonkhet">Amonkhet</option>
-      <option value="Ixalan">Ixalan</option>
-      <option value="Zendikar">Zendikar</option>
-      <option value="Ravnica">Ravnica</option>
-      <option value="Onslaught">Onslaught</option>
-    </select>
-  </div>
-  <button (click)="onSearch()">Buscar</button>
-  <div *ngIf="blockField.invalid && blockField.touched" class="error-message">
-    Por favor, selecione um bloco.
+</nav>
+
+<div class="container mt-4" *ngIf="results$ | async as results">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let result of results">
+      <div class="card h-75 mb-4 custom-card-background">
+        <div class="card-body">
+          <h5>{{ result.name }}</h5>
+          <h6>{{ result.block }}</h6>
+          <p>{{ result.releaseDate }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
-<div *ngIf="results$ | async as results">
-  <h2>Resultados da Pesquisa</h2>
-  <ul>
-    <li *ngFor="let result of results">
-      <p><strong>Nome:</strong> {{ result.name }}</p>
-      <p><strong>Código:</strong> {{ result.code }}</p>
-      <p><strong>Data de Lançamento:</strong> {{ result.releaseDate }}</p>
-    </li>
-  </ul>
-</div>
+
+
+
+
+

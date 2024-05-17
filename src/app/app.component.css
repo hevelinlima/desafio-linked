@@ -1,0 +1,26 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.header-container {
+  background-color: #121214;
+  height: 9.5rem;
+  padding: 2rem;
+}
+
+.container-custom {
+  border-radius: 0.5rem;
+  padding: 0 5rem;
+  margin-top: -1.75rem;
+}
+
+h1 {
+  display: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  font-family: "Expletus Sans", sans-serif;
+  font-weight: 700;
+}
