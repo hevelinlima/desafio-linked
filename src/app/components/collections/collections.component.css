@@ -1,9 +1,31 @@
 .custom-card-background {
   background-color: #202024;
   color: #00875f;
-  border-color: #00875f;
+
+  height: 9rem;
+}
+
+.card-2 {
+  position: relative;
+}
+
+.card-2 h5 {
+  color: white;
+}
+
+.card-2 p {
+  padding: 0.75rem;
+  border: 1px solid #00875f;
+  border-radius: 8px;
+  width: 7rem;
+
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  margin: 0;
 }
 
 .custom-card-background:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  border-color: #00875f;
 }

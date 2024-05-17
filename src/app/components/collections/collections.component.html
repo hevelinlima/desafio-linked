@@ -26,8 +26,8 @@
 <div class="container mt-4" *ngIf="results$ | async as results">
   <div class="row">
     <div class="col-md-4" *ngFor="let result of results">
-      <div class="card h-75 mb-4 custom-card-background">
-        <div class="card-body">
+      <div class="card mb-4 custom-card-background">
+        <div class="card-body card-2">
           <h5>{{ result.name }}</h5>
           <h6>{{ result.block }}</h6>
           <p>{{ result.releaseDate }}</p>
