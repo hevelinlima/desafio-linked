@@ -1,3 +1,7 @@
+.container-alert {
+  padding-top: 1rem;
+}
+
 .custom-card-background {
   background-color: #202024;
   color: #00875f;

@@ -17,6 +17,7 @@ export class CollectionsComponent implements OnInit {
   results$!: Observable<any>;
   selectedSetId: string | null = null;
   boosterCards: any[] = [];
+  showResults: boolean = true;
 
   constructor(private http: HttpClient) {}
 
@@ -39,11 +40,13 @@ export class CollectionsComponent implements OnInit {
         map((res: any) => res.sets)
       )
       }
+      this.showResults = true;
     }
   }
 
   onSelectSet(setId: string):void{
     this.selectedSetId = setId;
+    this.showResults = false;
     this.getBoosterCards(setId);
   }
 

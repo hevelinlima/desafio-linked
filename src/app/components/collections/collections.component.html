@@ -16,15 +16,15 @@
       <button (click)="onSearch()" class="btn btn-outline-success">Buscar</button>
     </div>
     <div class="container">
-      <div *ngIf="blockField.invalid && blockField.touched" class="alert alert-info" role="alert">
+      <div *ngIf="blockField.invalid && blockField.touched" class="alert alert-info container-alert" role="alert">
         Por favor, selecione um bloco.
       </div>
     </div>
   </div>
 </nav>
 
-<div class="container mt-4" *ngIf="results$ | async as results">
-  <div class="row">
+<div class="container mt-4" *ngIf="showResults">
+  <div class="row" *ngIf="results$ | async as results">
     <div class="col-md-4" *ngFor="let result of results" (click)="onSelectSet(result.code)">
       <div class="card mb-4 custom-card-background">
         <div class="card-body card-2">
@@ -37,7 +37,7 @@
   </div>
 </div>
 
-<app-booster-display [boosterCards]="boosterCards" ></app-booster-display>
+<app-booster-display *ngIf="!showResults" [boosterCards]="boosterCards" ></app-booster-display>
 
 
 
