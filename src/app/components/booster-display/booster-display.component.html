@@ -10,10 +10,11 @@
           <div class="booster-info">
             <h5>{{ card.name }}</h5>
             <h6>{{ card.manaCost }}</h6>
+            <p>{{ card.type }}</p>
             <p>{{ card.text }}</p>
           </div>
           <div class="color-icons">
-            <img *ngFor="let color of card.colorIdentity" [src]="getIconURL(color)" class="icon" alt="{{ color }}">
+            <img *ngFor="let color of card.colorIdentity" [src]="getIconURL(color)" class="icon img-icon" alt="{{ color }}">
           </div>
         </div>
       </div>

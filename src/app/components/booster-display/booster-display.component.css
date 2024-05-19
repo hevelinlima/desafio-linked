@@ -6,6 +6,10 @@
   border-radius: 8px;
 }
 
+.img-icon {
+  max-height: 1rem;
+}
+
 .custom-card-booster:hover {
   opacity: 0.9;
   border: 2px solid white;
@@ -63,9 +67,33 @@ h2 {
   white-space: normal;
 }
 
-.fixed-span {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 1rem;
+.color-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media only screen and (max-width: 768px) {
+  .custom-card-booster {
+    height: auto;
+    border: none;
+  }
+  .booster-card {
+    display: flex;
+    flex-direction: column;
+    overflow: visible;
+  }
+  .color-icons {
+    display: none;
+  }
+  .booster-info {
+    overflow: visible;
+    width: auto;
+  }
+  .image-container {
+    height: auto;
+  }
+  .booster-info > p {
+    display: none;
+  }
 }

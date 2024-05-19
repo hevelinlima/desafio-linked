@@ -17,6 +17,7 @@ export class BoosterDisplayComponent implements OnInit {
     'B': 'assets/images/B-swamp.webp',
     'R': 'assets/images/R-mountain.webp',
     'G': 'assets/images/G-forest.png',
+    'W': 'assets/images/W.webp',
   };
 
   fixImageUrl(url: string): string {
