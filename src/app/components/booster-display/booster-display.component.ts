@@ -12,8 +12,19 @@ export class BoosterDisplayComponent implements OnInit {
 
   ngOnInit() {}
 
+  colorIcons: { [key: string]: string } = {
+    'U': 'assets/images/U-island.webp',
+    'B': 'assets/images/B-swamp.webp',
+    'R': 'assets/images/R-mountain.webp',
+    'G': 'assets/images/G-forest.png',
+  };
+
   fixImageUrl(url: string): string {
     return url.replace('http://', 'https://');
+  }
+
+  getIconURL(color: string): string {
+    return this.colorIcons[color] || '';
   }
 }
 

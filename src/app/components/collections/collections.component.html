@@ -11,12 +11,14 @@
         <option value="Zendikar">Zendikar</option>
         <option value="Ravnica">Ravnica</option>
         <option value="Onslaught">Onslaught</option>
+        <option value="Core Set">Core Set</option>
+        <option value="Ice Age">Ice Age</option>
       </select>
   
       <button (click)="onSearch()" class="btn btn-outline-success">Buscar</button>
     </div>
-    <div class="container">
-      <div *ngIf="blockField.invalid && blockField.touched" class="alert alert-info container-alert" role="alert">
+    <div class="container container-alert">
+      <div *ngIf="blockField.invalid && blockField.touched" class="alert alert-info" role="alert">
         Por favor, selecione um bloco.
       </div>
     </div>
