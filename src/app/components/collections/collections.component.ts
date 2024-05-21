@@ -18,6 +18,7 @@ export class CollectionsComponent implements OnInit {
   selectedSetId: string | null = null;
   boosterCards: any[] = [];
   showResults: boolean = true;
+  showInfo: boolean = true;
 
   constructor(private http: HttpClient) {}
 
@@ -41,12 +42,14 @@ export class CollectionsComponent implements OnInit {
       )
       }
       this.showResults = true;
+      this.showInfo = false;
     }
   }
 
   onSelectSet(setId: string):void{
     this.selectedSetId = setId;
     this.showResults = false;
+    this.showInfo = false;
     this.boosterCards = [];
     this.getBoosterCards(setId);
   }
@@ -56,11 +59,15 @@ export class CollectionsComponent implements OnInit {
 
     this.http.get<any>(BOOSTER_URL)
     .pipe(
-      map((res: any) => res.cards.filter((card: any)=> card.type.includes('Creature')))
+      map((res: any) => res.cards.filter((card: any)=> card.types.includes('Creature')))
     ).subscribe(
       cards => {
-        this.boosterCards = [...this.boosterCards, ...cards];
-        this.getBoosterCards(setId); 
+        if (cards.length >= 30) {
+          this.boosterCards = cards.slice(0, 30);
+        } else {
+          this.boosterCards = [...this.boosterCards, ...cards];
+          this.getBoosterCards(setId); 
+        }
       },
       error => {
         console.error('Erro ao buscar boosters:', error);

@@ -25,6 +25,18 @@
   </div>
 </nav>
 
+<div class="container mt-6 info-container" *ngIf="showInfo">
+  <div class="alert alert-success" role="alert">
+    <h4 class="alert-heading">Bem vindo!</h4>
+    <p>Magic: The Gathering é um jogo de cartas colecionáveis onde os jogadores assumem o papel de poderosos magos, conhecidos como planeswalkers. Utilizando baralhos personalizados, eles conjuram criaturas, lançam feitiços e utilizam artefatos para derrotar seus oponentes.</p>
+    <p>O objetivo é reduzir os pontos de vida do adversário a zero, usando estratégia e habilidade para dominar o campo de batalha.</p>
+    <p>Esta aplicação permite aos usuários pesquisarem coleções de cartas de Magic: The Gathering, através de seus nomes e/ou bloco. Após a pesquisa, você pode selecionar uma coleção, iniciando um fluxo requisição para obter 15 cartas aleatórias dessa coleção. Este processo é repetido até que sejam obtidas 30 cartas do tipo criatura. </p>
+    <hr>
+    <p class="mb-0">A API apresentou quebras recentes, reduzindo consideravelmente  o número de resultados de pesquisas dentro desta aplicação.</p>
+    <p class="mb-0">Para testá-la, escolha o bloco Ice Age, que é o único que ainda possui resultados de requisição! <i>(na última vez que testei)</i></p>
+  </div>
+</div>
+
 <div class="container mt-4" *ngIf="showResults">
   <div class="row" *ngIf="results$ | async as results">
     <div class="col-md-4" *ngFor="let result of results" (click)="onSelectSet(result.code)">

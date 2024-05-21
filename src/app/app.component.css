@@ -25,3 +25,9 @@ h1 {
   font-family: "Expletus Sans", sans-serif;
   font-weight: 700;
 }
+
+@media only screen and (max-width: 768px) {
+  .container-custom {
+    padding: 0 1rem;
+  }
+}
