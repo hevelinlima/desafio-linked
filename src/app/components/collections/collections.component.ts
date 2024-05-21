@@ -47,6 +47,7 @@ export class CollectionsComponent implements OnInit {
   onSelectSet(setId: string):void{
     this.selectedSetId = setId;
     this.showResults = false;
+    this.boosterCards = [];
     this.getBoosterCards(setId);
   }
 
@@ -55,13 +56,16 @@ export class CollectionsComponent implements OnInit {
 
     this.http.get<any>(BOOSTER_URL)
     .pipe(
-      map((res: any) => res.cards)).subscribe(
+      map((res: any) => res.cards.filter((card: any)=> card.type.includes('Creature')))
+    ).subscribe(
       cards => {
-        this.boosterCards = cards;
+        this.boosterCards = [...this.boosterCards, ...cards];
+        this.getBoosterCards(setId); 
       },
       error => {
         console.error('Erro ao buscar boosters:', error);
       }
     );
   }
+
 }
