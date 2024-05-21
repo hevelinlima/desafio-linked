@@ -54,25 +54,28 @@ export class CollectionsComponent implements OnInit {
     this.getBoosterCards(setId);
   }
 
-  getBoosterCards(setId: string):void{
-    const BOOSTER_URL = this.SEARCH_URL + `/${setId}/booster`;
+  getBoosterCards(setId: string): void {
+    const BOOSTER_URL = `${this.SEARCH_URL}/${setId}/booster`;
 
     this.http.get<any>(BOOSTER_URL)
-    .pipe(
-      map((res: any) => res.cards.filter((card: any)=> card.types.includes('Creature')))
-    ).subscribe(
-      cards => {
-        if (cards.length >= 30) {
-          this.boosterCards = cards.slice(0, 30);
-        } else {
-          this.boosterCards = [...this.boosterCards, ...cards];
-          this.getBoosterCards(setId); 
+      .pipe(
+        map((res: any) => res.cards.filter((card: any) => card.types.includes('Creature')))
+      ).subscribe(
+        cards => {
+          const totalCards = this.boosterCards.length + cards.length;
+          if (totalCards >= 30) {
+            this.boosterCards.push(...cards.slice(0, 30 - this.boosterCards.length));
+          } else {
+            this.boosterCards.push(...cards);
+            if (this.boosterCards.length < 30) {
+              this.getBoosterCards(setId);
+            }
+          }
+        },
+        error => {
+          console.error('Erro ao buscar boosters:', error);
         }
-      },
-      error => {
-        console.error('Erro ao buscar boosters:', error);
-      }
-    );
+      );
   }
 
 }
